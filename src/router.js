@@ -23,6 +23,12 @@ const routes = [
     component: () =>
       import("./views/login.vue"),
   },
+  {
+    path: "/editArticle",
+    name: "editArticle",
+    component: () =>
+      import("./views/editArticle.vue"),
+  }
 ];
 
 const router = new VueRouter({

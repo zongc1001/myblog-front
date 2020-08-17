@@ -1,9 +1,13 @@
 <template>
-  <div>
-    <a-menu v-model="current" mode="horizontal" @click="navTo">
-      <a-menu-item key="demo">
+  <div id="nav-bar">
+    <a-menu class="menu" v-model="current" mode="horizontal" @click="navTo">
+      <a-menu-item  class="menu-item" key="demo">
         <a-icon type="appstore" />首页
       </a-menu-item>
+      <a-menu-item key="editArticle">
+        <a-icon type="edit" />写文章
+      </a-menu-item>
+      
       <a-sub-menu>
         <span slot="title" class="submenu-title-wrapper">
           <a-icon type="setting" />用户设置
@@ -43,5 +47,16 @@ export default {
 </script>
 
 <style scoped>
+#nav-bar {
+  z-index: 10000;
+}
+.menu {
+  margin: auto;
+  text-align: right;
+  height: 3rem;
+}
 
+.menu-item {
+  text-align: center;
+}
 </style>

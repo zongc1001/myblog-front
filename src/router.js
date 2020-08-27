@@ -30,6 +30,13 @@ const routes = [
       import("./views/editArticle.vue"),
   },
   {
+    path: "/editArticle/:id",
+    props: true,
+    component: () =>
+      import("./views/editArticle.vue"),
+  },
+  
+  {
     path: "/articleList",
     name: "articleList",
     component: () =>

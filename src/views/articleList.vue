@@ -8,6 +8,9 @@
           <a-divider type="vertical" /> -->
           <span>{{ item.title }}</span>
         </a>
+        
+
+          
       </a-list-item>
     </a-list>
   </div>
@@ -55,8 +58,9 @@ export default {
 
 .title {
   cursor: pointer;
-  text-decoration-line: underline;
+  text-decoration-line: none;
   text-decoration-style: solid;
+
 }
 
 a-list > a-list-item {

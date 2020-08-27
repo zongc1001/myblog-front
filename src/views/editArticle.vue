@@ -1,22 +1,23 @@
 <template>
   <div id="editor">
-    <div id="title">
-      <a-input placeholder="输入标题" size="large" v-model="title" />
+    <div>
+      <a-input id="title" placeholder="输入标题" size="large" v-model="title" />
     </div>
     <a-divider></a-divider>
     <div style="height:100%;">
       <mavon-editor
         :toolbars="markdownOption"
-        fontSize="16"
-        v-model="value"
-        codeStyle="atom-one-light"
-        ishljs="true"
-        katex="true"
+        :fontSize="16"
+        v-model="content"
+        :codeStyle="'atom-one-light'"
+        :ishljs="true"
+        :katex="true"
       ></mavon-editor>
     </div>
 
     <a-divider></a-divider>
     <a-button v-on:click="submitArticle" type="primary" size="large">Save</a-button>
+    <!-- <a-button v-on:click="submitArticle" type="primary" size="large">Update</a-button> -->
   </div>
 </template>
 
@@ -34,10 +35,13 @@ export default {
   components: {
     mavonEditor,
   },
+  props: {
+    id: String, //文章的id
+  },
   data() {
     return {
       title: "",
-      value: "",
+      content: "",
       markdownOption: {
         bold: true, // 粗体
         italic: true, // 斜体
@@ -81,21 +85,55 @@ export default {
         username: this.$store.state.username,
         userid: this.$store.state.userid,
         title: this.title,
-        content: this.value,
+        content: this.content,
       };
-      this.$axios
-        .post("/api/articles", obj)
+
+      let url, axiosMethod;
+      if (this.id) {
+        url = "/api/articles" + this.id;
+        axiosMethod = this.$axios.put(url, obj);
+      } else {
+        url = "/api/articles";
+        axiosMethod = this.$axios.post(url, obj);
+      }
+
+      axiosMethod
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
-            this.$message.success(res.data.msg);
+            this.$message.success("保存成功");
           }
         })
         .catch((err) => {
-          console.log("1313123" + err);
-          this.$message.error("发表失败");
+          console.log(err);
+          this.$message.error("保存失败");
         });
     },
+    getArticle() {
+      console.log(this.id);
+      this.$axios
+        .get("/api/articles/" + this.id)
+        .then((res) => {
+          console.log(res);
+          if (res.status === 200) {
+            this.title = res.data.body.title;
+            this.content = res.data.body.content;
+            // this.username = res.data.body.username;
+            // this.nickname = res.data.body.nickname;
+            // this.updatedAt = res.data.body.updatedAt;
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+          this.$message.error("获取失败");
+        });
+    },
+  },
+  created() {
+    console.log(this.id);
+    if (this.id) {
+      this.getArticle();
+    }
   },
 };
 </script>
@@ -109,5 +147,6 @@ export default {
 }
 #title {
   margin-top: 1rem;
+  font-size: 1rem;
 }
 </style>

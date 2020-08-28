@@ -1,10 +1,16 @@
 <template>
   <div id="nav-bar">
     <a-menu class="menu" v-model="current" mode="horizontal" @click="navTo">
-      <a-menu-item class="menu-item" key="demo">
+      
+      <a-menu-item class="menu-item title" >
         <!-- <a-icon type="appstore" /> -->
-        <strong>首页</strong>
+        <div> 
+          <span class="main-title">向死而生</span> <br />
+          <span class="sub-title">大学生教育平台</span>
+        </div>
       </a-menu-item>
+
+
       <a-menu-item class="menu-item" key="demo">
         <!-- <a-icon type="appstore" /> -->
         <strong>首页</strong>
@@ -57,7 +63,7 @@ export default {
 <style scoped>
 #nav-bar {
   z-index: 10000;
-  width: 90%;
+  width: 86%;
   margin: auto;
 }
 .menu {
@@ -66,14 +72,48 @@ export default {
   height: 4rem;
 }
 
+/* .menu::after {
+  content: 'lalala';
+  position: relative;
+  top: -4rem;
+  
+  height: 4rem;
+  width: 8rem;
+  background-color: red;
+} */
+
 .menu-item {
   text-align: center;
   height: 100%;
   margin: auto;
   margin-bottom: -1px;
   margin-top: -1px;
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   width: 6rem;
   padding: 1rem 0;
 }
+
+.title {
+  float: left;
+  text-align: left;
+  margin: auto;
+  margin-left: 5rem;
+  padding: .5rem .2rem;
+  line-height: 1.2;
+}
+
+.main-title {
+  color: rgb(24, 144, 255);
+  font-size: 1.2rem;
+  font-weight: 2px;
+}
+
+
+.sub-title {
+  font-size: .8rem;
+  color: rgb(185, 185, 185);
+  font-weight: 2px;
+
+}
+
 </style>

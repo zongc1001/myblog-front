@@ -4,4 +4,8 @@ module.exports = {
       port: 8081,
       disableHostCheck: true,
     },
+    chainWebpack: (config) => {
+      config.plugins.delete("prefetch");
+    }
 };
+

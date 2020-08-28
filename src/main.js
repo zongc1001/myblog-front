@@ -6,6 +6,7 @@ import "ant-design-vue/dist/antd.css";
 import router from "./router";
 import store from "./store";
 
+
 const serverUrl = "/node/";
 axios.defaults.baseURL = serverUrl;
 Vue.prototype.$serverUrl = serverUrl;

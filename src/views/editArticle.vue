@@ -6,9 +6,9 @@
     <a-divider></a-divider>
     <div style="height:100%;">
       <mavon-editor
-        :toolbars="markdownOption"
-        :fontSize="16"
         v-model="content"
+        :toolbars="markdownOption"
+        :fontSize="'16px'"
         :codeStyle="'atom-one-light'"
         :ishljs="true"
         :katex="true"
@@ -24,12 +24,9 @@
 <script>
 import { mavonEditor } from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
-console.log(mavonEditor.getMarkdownIt());
-mavonEditor.getMarkdownIt().set({
-  html: true,
-  linkify: true,
-  typographer: true,
-});
+import hljs from "highlight.js";
+import "mavon-editor/dist/highlightjs/styles/atom-one-light.min.css";
+
 export default {
   name: "editor",
   components: {
@@ -77,6 +74,7 @@ export default {
         subfield: true, // 单双栏模式
         preview: true, // 预览
       },
+      markdownIt: {},
     };
   },
   methods: {
@@ -118,9 +116,6 @@ export default {
           if (res.status === 200) {
             this.title = res.data.body.title;
             this.content = res.data.body.content;
-            // this.username = res.data.body.username;
-            // this.nickname = res.data.body.nickname;
-            // this.updatedAt = res.data.body.updatedAt;
           }
         })
         .catch((err) => {
@@ -130,10 +125,40 @@ export default {
     },
   },
   created() {
+    let that = this;
+    console.log("editArticle created");
     console.log(this.id);
-    if (this.id) {
+    that.markdownIt = mavonEditor.getMarkdownIt();
+    console.log(this.markdownIt);
+    that.markdownIt.set({
+      html: true,
+      linkify: true,
+      typographer: true,
+      highlight: function (str, lang) {
+        if (lang && lang !== "" && hljs.getLanguage(lang)) {
+          try {
+        console.log(hljs.highlight(lang, str, true));
+            return (
+              '<pre class="hljs"><code>' +
+              hljs.highlight(lang, str, true).value +
+              "</code></pre>"
+            );
+          } catch (__) {
+            console.log(__);
+          }
+        }
+        console.log(that.markdownIt);
+        return (
+          '<pre class="hljs"><code>' +
+          that.markdownIt.utils.escapeHtml(str) +
+          "</code></pre>"
+        );
+      },
+    });
+   if (this.id) {
       this.getArticle();
     }
+   
   },
 };
 </script>

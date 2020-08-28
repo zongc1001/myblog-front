@@ -79,33 +79,37 @@ export default {
       };
       console.log(obj);
       console.log(this.id);
-      this.$router.push('/editArticle/' + this.id);
-      // this.$axios
-      //   .put("/api/articles/" + this.id, obj)
-      //   .then((res) => {
-      //     console.log(res);
-      //   })
-      //   .catch((err) => {
-      //     console.error(err);
-      //   });
+      this.$router.push("/editArticle/" + this.id);
     },
     deleteArticle() {
       console.log("delete called");
+      this.$axios
+        .delete("/api/articles/" + this.id)
+        .then((res) => {
+          console.log(res);
+          this.$message.success("删除成功");
+          this.$router.push("/articleList");
+        })
+        .catch((err) => {
+          console.error(err);
+          this.$message.error("删除失败");
+        });
     },
   },
   created() {
+    let that = this;
     console.log("enter created");
-    this.markdownIt = mavonEditor.getMarkdownIt();
-    console.log(this.markdownIt);
+    that.markdownIt = mavonEditor.getMarkdownIt();
+    console.log(that.markdownIt);
     console.log(hljs);
-    this.markdownIt.set({
+    that.markdownIt.set({
       html: true,
       linkify: true,
       typographer: true,
       highlight: function (str, lang) {
-        console.log(hljs.highlight(lang, str, true));
-        if (lang && hljs.getLanguage(lang)) {
+        if (lang && lang !== "" && hljs.getLanguage(lang)) {
           try {
+            console.log(hljs.highlight(lang, str, true));
             return (
               '<pre class="hljs"><code>' +
               hljs.highlight(lang, str, true).value +
@@ -115,10 +119,10 @@ export default {
             console.log(__);
           }
         }
-
+        console.log(that.markdownIt);
         return (
           '<pre class="hljs"><code>' +
-          this.markdownIt.utils.escapeHtml(str) +
+          that.markdownIt.utils.escapeHtml(str) +
           "</code></pre>"
         );
       },

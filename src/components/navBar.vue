@@ -5,6 +5,10 @@
         <!-- <a-icon type="appstore" /> -->
         <strong>首页</strong>
       </a-menu-item>
+      <a-menu-item class="menu-item" key="demo">
+        <!-- <a-icon type="appstore" /> -->
+        <strong>首页</strong>
+      </a-menu-item>
 
       <a-menu-item class="menu-item" key="editArticle">
         <!-- <a-icon type="edit" /> -->

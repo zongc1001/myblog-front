@@ -12,7 +12,7 @@
     <a-row>
       <a-col :span="1" :offset="10">密码</a-col>
       <a-col :span="3">
-        <a-input type="text" v-model="password" />
+        <a-input type="password" v-model="password" />
       </a-col>
     </a-row>
     <a-row type="flex" justify="center">

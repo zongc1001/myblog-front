@@ -88,7 +88,7 @@ export default {
 
       let url, axiosMethod;
       if (this.id) {
-        url = "/api/articles" + this.id;
+        url = "/api/articles/" + this.id;
         axiosMethod = this.$axios.put(url, obj);
       } else {
         url = "/api/articles";

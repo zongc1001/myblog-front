@@ -1,16 +1,28 @@
 <template>
   <div id="nav-bar">
     <a-menu class="menu" v-model="current" mode="horizontal" @click="navTo">
-      <a-menu-item class="menu-item" key="home" v-show="this.$store.state.username">
+      
+      <a-menu-item class="menu-item title" key="home">
+        <!-- <a-icon type="appstore" /> -->
+        <!-- <div>  -->
+          <!-- 还需调整 -->
+          <span class="main-title">向死而生</span> <br />
+          <span class="sub-title">大学生死亡教育平台</span>
+        <!-- </div> -->
+      </a-menu-item>
+
+
+      <a-menu-item class="menu-item" key="home">
         <!-- <a-icon type="appstore" /> -->
         <h6>首页</h6>
       </a-menu-item>
 
-      <a-menu-item class="menu-item" key="editArticle" v-show="this.$store.state.username">
+      <a-menu-item class="menu-item" key="editArticle">
         <!-- <a-icon type="edit" /> -->
         <h6>写文章</h6>
       </a-menu-item>
       <a-menu-item class="menu-item" key="articleList">
+        <!-- <a-icon type="edit" /> -->
         <h6>文章列表</h6>
       </a-menu-item>
       <a-sub-menu class="menu-item">
@@ -18,9 +30,9 @@
           <h6>用户设置</h6>
         </span>
         <a-menu-item-group title="登录状态">
-          <!-- <a-menu-item key="signup">注册</a-menu-item> -->
+          <a-menu-item key="signup">注册</a-menu-item>
           <a-menu-item key="login">登录</a-menu-item>
-          <!-- <a-menu-item key="logout">注销</a-menu-item> -->
+          <a-menu-item key="logout">注销</a-menu-item>
         </a-menu-item-group>
       </a-sub-menu>
     </a-menu>
@@ -56,18 +68,17 @@ h6 {
 }
 
 #nav-bar {
-  z-index: 200;
+  z-index: 10000;
   width: 86%;
+  
   margin: auto;
   font-family: "微软雅黑";
-  position: sticky;
-  line-height: 100%;
-  top: 0;
+  
 }
 .menu {
   margin: auto;
   text-align: right;
-  height: 20%;
+  height: 15vh;
 }
 
 /* .menu::after {

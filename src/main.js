@@ -1,10 +1,27 @@
 import App from "./App.vue";
 import Vue from "vue";
 import axios from "axios";
-import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import router from "./router";
 import store from "./store";
+import {
+  Button,
+  message,
+  Form,
+  Divider,
+  Avatar,
+  Input,
+  List,
+  Icon,
+  Pagination,
+  Col,
+  Tooltip,
+  Row,
+  Upload,
+  Comment,
+  Menu,
+  Tag,
+} from "ant-design-vue";
 
 
 const serverUrl = "/node/";
@@ -17,7 +34,7 @@ Vue.prototype.$serverUrl = serverUrl;
 axios.interceptors.request.use(
   (config) => {
     let token = store.state.token;
-    if(token) {
+    if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
@@ -38,13 +55,30 @@ axios.interceptors.response.use(
   }
 );
 
-
 Vue.prototype.$axios = axios;
-
+Vue.prototype.$message = message;
 
 Vue.config.productionTip = false;
 
-Vue.use(Antd);
+// Vue.use(Antd);
+[
+  Button,
+  message,
+  Form,
+  Divider,
+  Avatar,
+  Input,
+  List,
+  Icon,
+  Pagination,
+  Col,
+  Tooltip,
+  Row,
+  Upload,
+  Comment,
+  Menu,
+  Tag
+].forEach(x => Vue.use(x));
 
 new Vue({
   router,

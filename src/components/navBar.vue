@@ -60,7 +60,6 @@ h6 {
   width: 86%;
   margin: auto;
   font-family: "微软雅黑";
-  position: sticky;
   line-height: 100%;
   top: 0;
 }

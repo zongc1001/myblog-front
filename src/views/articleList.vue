@@ -8,9 +8,6 @@
           <a-divider type="vertical" /> -->
           <span>{{ item.title }}</span>
         </a>
-        
-
-          
       </a-list-item>
     </a-list>
   </div>

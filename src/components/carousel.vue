@@ -15,18 +15,6 @@
             <a-button>了解更多</a-button>
         </div>
       </div>
-      <!-- <div class="card">
-        <div class="container">
-          <div class="content">
-            <h1>用肉眼直视如此耀眼的骄阳</h1>
-            <p>
-              2019年11月29日四川大学江安校区一教B105线下讲座
-              <br />马克思主义学院李丹老师教大家如何善待死亡
-            </p>
-            <a-button>了解更多</a-button>
-          </div>
-        </div>
-      </div> -->
     </a-carousel>
   </div>
 </template>
@@ -41,7 +29,9 @@ export default {
   components: {},
   // 组件状态值
   data() {
-    return {};
+    return {
+      
+    };
   },
   // 计算属性
   computed: {},

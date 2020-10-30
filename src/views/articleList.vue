@@ -50,7 +50,8 @@ export default {
 
 <style>
 .main {
-  margin: 1rem 20%;
+  margin: 1rem auto;
+  max-width: 80%;
 }
 
 .title {

@@ -134,7 +134,8 @@ export default {
 
 <style scoped>
 .main {
-  margin: 0.5rem 20%;
+  max-width: 80%;
+  margin: 0.5rem auto;
   padding: 1rem;
 }
 
